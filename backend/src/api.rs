@@ -48,13 +48,13 @@ pub fn router() -> Router<AppState> {
     Router::new()
         // Raffle endpoints
         .route("/raffles", get(list_raffles))
-        .route("/raffles/:raffle_id", get(get_raffle_by_id))
-        .route("/raffles/:raffle_id/purchases", get(list_purchases))
-        .route("/raffles/:raffle_id/proof", get(get_raffle_proof))
+        .route("/raffles/{raffle_id}", get(get_raffle_by_id))
+        .route("/raffles/{raffle_id}/purchases", get(list_purchases))
+        .route("/raffles/{raffle_id}/proof", get(get_raffle_proof))
         // Randomness provider endpoints
         .route("/randomness/requests", get(list_randomness_requests))
         .route(
-            "/randomness/requests/:request_id",
+            "/randomness/requests/{request_id}",
             get(get_randomness_request),
         )
         .route(

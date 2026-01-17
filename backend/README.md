@@ -68,7 +68,7 @@ sqlx migrate run --source migrations
 cargo run
 ```
 
-The server starts on `BIND_ADDR` (default `0.0.0.0:8080`) and automatically begins indexing.
+The server starts on `BIND_ADDR` (default `0.0.0.0:8081`) and automatically begins indexing.
 
 ## Environment Variables
 
@@ -81,7 +81,7 @@ The server starts on `BIND_ADDR` (default `0.0.0.0:8080`) and automatically begi
 | `START_BLOCK` | ❌ | `0` | Block to start indexing from |
 | `RANDOMNESS_PROVIDER_ADDRESS` | ❌ | - | DrandRandomnessProvider contract address |
 | `EXPLORER_BASE_URL` | ❌ | `https://testnet.arcscan.app` | Block explorer base URL for tx links |
-| `BIND_ADDR` | ❌ | `0.0.0.0:8080` | Address to bind the HTTP server |
+| `BIND_ADDR` | ❌ | `0.0.0.0:8081` | Address to bind the HTTP server |
 | `INDEXER_BATCH_SIZE` | ❌ | `2000` | Max blocks per RPC query |
 | `INDEXER_POLL_INTERVAL_MS` | ❌ | `3000` | Polling interval in milliseconds |
 
@@ -174,6 +174,19 @@ See [TESTING.md](./TESTING.md) for detailed testing and debugging instructions.
 ```bash
 cargo test
 ```
+
+### Test Scripts
+
+The `contracts/` folder contains integration test scripts that verify the backend APIs:
+
+```bash
+cd ../contracts
+pnpm install
+pnpm test:integration  # Full end-to-end test
+pnpm test:api          # Test all backend API endpoints
+```
+
+See [contracts/README.md](../contracts/README.md) for more details on available test scripts.
 
 ### Linting
 ```bash

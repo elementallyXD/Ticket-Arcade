@@ -1,14 +1,15 @@
-version: "3.8"
 services:
   postgres:
     image: postgres:16
     container_name: ticket-arcade-postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
-      POSTGRES_USER: ticket_arcade
-      POSTGRES_PASSWORD: ticket_arcade
-      POSTGRES_DB: ticket_arcade
+      POSTGRES_USER: ticket_arcade_user
+      POSTGRES_PASSWORD: ticket_arcade_password
+      POSTGRES_DB: ticket_arcade_db
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_INITDB_ARGS: "--auth-host=trust"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
