@@ -34,6 +34,21 @@ pnpm hardhat compile
 pnpm hardhat test
 ```
 
+## Deploy MockUSDC (For Testing)
+
+If you need test USDC tokens, deploy your own MockUSDC contract:
+
+```bash
+pnpm hardhat run scripts/deploy-mock-usdc.ts --network arc_testnet
+```
+
+This will:
+- Deploy a MockUSDC token contract
+- Mint 1,000,000 USDC to your wallet
+- Output the address to add to your `.env`
+
+> ⚠️ **Warning:** MockUSDC is for testing only. Anyone can mint tokens.
+
 ## Deploy to Arc Testnet
 
 ```bash
@@ -72,10 +87,58 @@ contracts/
 │   ├── RaffleFactory.sol
 │   ├── DrandRandomnessProvider.sol
 │   └── ...
-├── test/                # TypeScript tests
-├── scripts/             # Deployment scripts
+├── test/                # TypeScript unit tests
+├── scripts/             # Deployment and test scripts
+│   ├── deploy.ts            # Deploy RaffleFactory
+│   ├── deploy-mock-usdc.ts  # Deploy MockUSDC for testing
+│   ├── test-helpers.ts      # Shared utilities
+│   ├── create-test-raffle.ts
+│   ├── buy-tickets.ts
+│   ├── check-raffle.ts
+│   ├── test-backend-api.ts
+│   └── full-integration-test.ts
 ├── artifacts/           # Compiled artifacts (generated)
 └── docs/                # Contract documentation
+```
+
+## Test Scripts
+
+After deploying contracts, use these scripts to test the integration with the backend:
+
+### Quick Start
+
+```bash
+# Run all integration tests (creates raffle, buys tickets, verifies API)
+pnpm test:integration
+```
+
+### Individual Scripts
+
+| Script | Command | Description |
+|--------|---------|-------------|
+| Deploy MockUSDC | `pnpm hardhat run scripts/deploy-mock-usdc.ts --network arc_testnet` | Deploy test USDC token |
+| Create Raffle | `pnpm test:create-raffle` | Creates a new raffle on testnet |
+| Buy Tickets | `pnpm test:buy-tickets` | Purchases tickets for a raffle |
+| Check Raffle | `pnpm test:check-raffle` | Compares on-chain vs API data |
+| Test APIs | `pnpm test:api` | Tests all backend API endpoints |
+| Full Test | `pnpm test:integration` | End-to-end integration test |
+
+### Environment for Test Scripts
+
+Add these to your `.env` for test scripts:
+
+```bash
+# Required
+PRIVATE_KEY=0xYOUR_PRIVATE_KEY_HERE
+RAFFLE_FACTORY_ADDRESS=0x8895f9297570B6199BC617885973F5790Fa773A4
+USDC_ADDRESS=0xYOUR_USDC_ADDRESS
+
+# Optional (for buy-tickets and check-raffle)
+LAST_RAFFLE_ADDRESS=0xRAFFLE_ADDRESS_FROM_CREATE_SCRIPT
+TICKET_COUNT=5
+
+# Backend URL (defaults to localhost:8081)
+BACKEND_URL=http://localhost:8081
 ```
 
 ## Documentation

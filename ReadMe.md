@@ -154,3 +154,10 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 - **X (Twitter):** [@TicketArcade](https://x.com/TicketArcade)
 - **Email:** ticketarcade.official@gmail.com
 - **EVM Address:** `0x3b8059e6A461818bc8F8933428c965b38c5E0bC5`
+
+## Deployed Contract Addresses (Arc L1 Testnet)
+DrandRandomnessProvider: 0x4af4721E1339DAb5C2484045d401C4A4290320C6
+START_BLOCK: 17542046 
+
+RaffleFactory: 0x8895f9297570B6199BC617885973F5790Fa773A4
+START_BLOCK: 17542048

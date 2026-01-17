@@ -1,11 +1,17 @@
 {
   "name": "contracts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ticket Arcade Smart Contracts",
   "main": "index.js",
   "scripts": {
     "test": "hardhat test",
-    "deploy:arc": "hardhat run scripts/deploy.ts --network arc_testnet"
+    "compile": "hardhat compile",
+    "deploy:arc": "hardhat run scripts/deploy.ts --network arc_testnet",
+    "test:create-raffle": "hardhat run scripts/create-test-raffle.ts --network arc_testnet",
+    "test:buy-tickets": "hardhat run scripts/buy-tickets.ts --network arc_testnet",
+    "test:check-raffle": "hardhat run scripts/check-raffle.ts --network arc_testnet",
+    "test:api": "hardhat run scripts/test-backend-api.ts --network arc_testnet",
+    "test:integration": "hardhat run scripts/full-integration-test.ts --network arc_testnet"
   },
   "keywords": [],
   "author": "",
